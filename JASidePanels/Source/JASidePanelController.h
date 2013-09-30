@@ -168,4 +168,8 @@ typedef enum _JASidePanelState {
 @property (nonatomic, strong, readonly) UIView *rightPanelContainer;
 @property (nonatomic, strong, readonly) UIView *centerPanelContainer;
 
+//Property to allow side pane to not be closed when center panel is set
+//Should be used for iPad apps which want to have sticky left side panel
+@property (nonatomic, assign) BOOL allowStickySidePanels; // defaults to NO
+
 @end
