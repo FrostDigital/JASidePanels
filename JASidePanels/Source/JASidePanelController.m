@@ -572,17 +572,19 @@ static char ja_kvoContext;
 #pragma mark - Tap Gesture
 
 - (void)setTapView:(UIView *)tapView {
-    if (tapView != _tapView) {
-        [_tapView removeFromSuperview];
-        _tapView = tapView;
-        if (_tapView) {
-            _tapView.frame = self.centerPanelContainer.bounds;
-            _tapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-            [self _addTapGestureToView:_tapView];
-            if (self.recognizesPanGesture) {
-                [self _addPanGestureToView:_tapView];
+    if(!_allowStickySidePanels) {
+        if (tapView != _tapView) {
+            [_tapView removeFromSuperview];
+            _tapView = tapView;
+            if (_tapView) {
+                _tapView.frame = self.centerPanelContainer.bounds;
+                _tapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+                [self _addTapGestureToView:_tapView];
+                if (self.recognizesPanGesture) {
+                    [self _addPanGestureToView:_tapView];
+                }
+                [self.centerPanelContainer addSubview:_tapView];
             }
-            [self.centerPanelContainer addSubview:_tapView];
         }
     }
 }
