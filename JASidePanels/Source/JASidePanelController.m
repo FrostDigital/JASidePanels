@@ -406,7 +406,7 @@ static char ja_kvoContext;
         if (_leftPanel) {
             [self addChildViewController:_leftPanel];
             [_leftPanel didMoveToParentViewController:self];
-            [self _placeButtonForLeftPanel];
+            [self placeButtonForLeftPanel];
         }
         if (self.state == JASidePanelLeftVisible) {
             self.visiblePanel = _leftPanel;
@@ -432,7 +432,7 @@ static char ja_kvoContext;
 
 #pragma mark - Panel Buttons
 
-- (void)_placeButtonForLeftPanel {
+- (void)placeButtonForLeftPanel {
     if (self.leftPanel) {
         UIViewController *buttonController = self.centerPanel;
         if ([buttonController isKindOfClass:[UINavigationController class]]) {
@@ -658,7 +658,7 @@ static char ja_kvoContext;
 #pragma mark - Loading Panels
 
 - (void)_loadCenterPanelWithPreviousState:(JASidePanelState)previousState {
-    [self _placeButtonForLeftPanel];
+    [self placeButtonForLeftPanel];
     
     // for the multi-active style, it looks better if the new center starts out in it's fullsize and slides in
     if (self.style == JASidePanelMultipleActive) {
@@ -945,7 +945,7 @@ static char ja_kvoContext;
             }
         } else if ([keyPath isEqualToString:@"viewControllers"] && object == self.centerPanel) {
             // view controllers have changed, need to replace the button
-            [self _placeButtonForLeftPanel];
+            [self placeButtonForLeftPanel];
         }
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
