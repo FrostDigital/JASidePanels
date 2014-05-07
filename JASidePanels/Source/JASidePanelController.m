@@ -895,6 +895,8 @@ static char ja_kvoContext;
 }
 
 - (void)_hideCenterPanel {
+    [[NSNotificationCenter defaultCenter] postNotificationName:JASidePanelNotificationCenterPanelWillHide object:nil];
+
     self.centerPanelContainer.hidden = YES;
     if (self.centerPanel.isViewLoaded) {
         [self.centerPanel.view removeFromSuperview];
@@ -902,6 +904,8 @@ static char ja_kvoContext;
 }
 
 - (void)_unhideCenterPanel {
+    [[NSNotificationCenter defaultCenter] postNotificationName:JASidePanelNotificationCenterPanelWillShow object:nil];
+    
     self.centerPanelContainer.hidden = NO;
     if (!self.centerPanel.view.superview) {
         self.centerPanel.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -1008,6 +1012,9 @@ static char ja_kvoContext;
 }
 
 - (void)setCenterPanelHidden:(BOOL)centerPanelHidden animated:(BOOL)animated duration:(NSTimeInterval) duration {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:centerPanelHidden ? JASidePanelNotificationCenterPanelWillHide : JASidePanelNotificationCenterPanelWillShow object:nil];
+    
     if (centerPanelHidden != _centerPanelHidden && self.state != JASidePanelCenterVisible) {
         _centerPanelHidden = centerPanelHidden;
         duration = animated ? duration : 0.0f;

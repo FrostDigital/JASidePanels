@@ -25,6 +25,9 @@
 
 #import <UIKit/UIKit.h>
 
+#define JASidePanelNotificationCenterPanelWillHide @"JASidePanelNotificationCenterPanelWillHide"
+#define JASidePanelNotificationCenterPanelWillShow @"JASidePanelNotificationCenterPanelWillShow"
+
 typedef enum _JASidePanelStyle {
     JASidePanelSingleActive = 0,
     JASidePanelMultipleActive
